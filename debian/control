@@ -1,0 +1,21 @@
+Source: libsession-python
+Priority: optional
+Maintainer: Jason Rhinelander <jason@oxen.io>
+Build-Depends:
+    debhelper-compat (= 11),
+    libsession-util-dev (>= 1.1.0~),
+    pybind11-dev,
+    python3-pybind11,
+    python3-setuptools,
+    python3-all-dev,
+    dh-python
+Standards-Version: 4.4.1
+Section: python
+Homepage: https://github.com/oxen-io/libsession-python
+
+Package: python3-session-util
+Architecture: any
+Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
+Description: Python bindings for libsession-util
+ Libsession-util offers utility functions for interacting with the Session
+ network; this package contains (some) Python bindings around that library.
