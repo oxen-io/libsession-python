@@ -1,6 +1,6 @@
+#include "blinding.hpp"
 #include "onionreq.hpp"
 #include "xed25519.hpp"
-#include "blinding.hpp"
 
 using namespace session;
 
