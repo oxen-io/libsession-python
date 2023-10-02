@@ -4,8 +4,6 @@
 
 #include <session/blinding.hpp>
 
-#include <sodium/crypto_sign_ed25519.h>
-
 namespace py = pybind11;
 
 namespace session {
@@ -23,14 +21,7 @@ void pybind_blinding(py::module m) {
     m.def(
             "blind25_sign",
             [](py::bytes ed_sk_bytes, std::string_view server_pk, py::bytes message) {
-                auto ed_sk = to_unsigned_sv(ed_sk_bytes);
-                std::array<unsigned char, 64> ed_sk_tmp;
-                if (ed_sk.size() == 32) {
-                    std::array<unsigned char, 32> pk_ignore;
-                    crypto_sign_ed25519_seed_keypair(pk_ignore.data(), ed_sk_tmp.data(), ed_sk.data());
-                    ed_sk = {ed_sk_tmp.data(), 64};
-                }
-
+                auto ed_sk = to_unsigned_sv(static_cast<std::string_view>(ed_sk_bytes));
                 auto sig = blind25_sign(ed_sk, server_pk, to_unsigned_sv(message));
                 return py::bytes{from_unsigned_sv(sig)};
             },
