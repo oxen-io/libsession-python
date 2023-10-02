@@ -1,3 +1,9 @@
+libsession-python (0.0.1-3) unstable; urgency=medium
+
+  * DRY; formatting; ycm support
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 13:42:33 -0300
+
 libsession-python (0.0.1-2) unstable; urgency=medium
 
   * Fix debian/sources binary filename
