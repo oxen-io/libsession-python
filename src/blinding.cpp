@@ -23,7 +23,7 @@ void pybind_blinding(py::module m) {
             [](py::bytes ed_sk_bytes, std::string_view server_pk, py::bytes message) {
                 auto ed_sk = usv_from_pybytes(ed_sk_bytes, "ed25519_seckey", 32, 64);
                 auto sig = blind25_sign(ed_sk, server_pk, usv_from_pybytes(message));
-                return py::bytes{from_unsigned_sv(sig)};
+                return py::bytes{from_unsigned(sig.data()), sig.size()};
             },
             "ed25519_seckey"_a,
             "server_pubkey"_a,
