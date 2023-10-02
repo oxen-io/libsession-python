@@ -1,3 +1,9 @@
+libsession-python (0.0.1-6~ubuntu2304) lunar; urgency=medium
+
+  * Add dual str/bytes bindings for blind25_id
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 16:54:09 -0300
+
 libsession-python (0.0.1-5~ubuntu2304) lunar; urgency=medium
 
   * Another pybind11 compat fix
