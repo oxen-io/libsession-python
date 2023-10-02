@@ -1,3 +1,10 @@
+libsession-python (0.0.1-2) unstable; urgency=medium
+
+  * Fix debian/sources binary filename
+  * Remove external sodium dependency
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 12:42:22 -0300
+
 libsession-python (0.0.1-1) unstable; urgency=medium
 
   * Initial release.
