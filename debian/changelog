@@ -1,3 +1,10 @@
+libsession-python (0.0.1-4~ubuntu2304) lunar; urgency=medium
+
+  * don't use zstd on newer ubuntu
+  * Compatibility fix for older pybind
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 13:57:34 -0300
+
 libsession-python (0.0.1-3~ubuntu2304) lunar; urgency=medium
 
   * lunar deb
