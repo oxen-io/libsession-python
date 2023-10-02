@@ -1,3 +1,9 @@
+libsession-python (0.0.1-5~ubuntu2310) mantic; urgency=medium
+
+  * Another pybind11 compat fix
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 14:10:44 -0300
+
 libsession-python (0.0.1-4~ubuntu2310) mantic; urgency=medium
 
   * don't use zstd on newer ubuntu
