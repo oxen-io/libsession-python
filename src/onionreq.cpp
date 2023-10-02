@@ -4,20 +4,11 @@
 
 #include <session/onionreq/parser.hpp>
 
-namespace py = pybind11;
+#include "common.hpp"
 
 namespace session::onionreq {
 
 namespace {
-    ustring_view usv_from_bytes(
-            const py::bytes& in, std::optional<size_t> required_size = std::nullopt) {
-        char* ptr;
-        ssize_t sz;
-        PyBytes_AsStringAndSize(in.ptr(), &ptr, &sz);
-        if (required_size && sz != *required_size)
-            throw std::invalid_argument{"invalid bytes size"};
-        return {reinterpret_cast<const unsigned char*>(ptr), static_cast<size_t>(sz)};
-    }
 
     // Wrapper so that we can hold the payload as bytes, clearing the original, rather than needing
     // to hold it and make a second copy every time it is accessed.
@@ -41,9 +32,9 @@ void pybind(pybind11::module m) {
                              py::bytes privkey_b,
                              py::bytes request_b,
                              size_t max_size) {
-                     auto pubkey = usv_from_bytes(pubkey_b, 32);
-                     auto privkey = usv_from_bytes(privkey_b, 32);
-                     auto request = usv_from_bytes(request_b);
+                     auto pubkey = usv_from_pybytes(pubkey_b, "x25519_pubkey", 32);
+                     auto privkey = usv_from_pybytes(privkey_b, "x25519_privkey", 32);
+                     auto request = usv_from_pybytes(request_b);
                      PyOnionReqParser parser{pubkey, privkey, request, max_size};
                      ustring pl = parser.move_payload();
                      parser.payload_b =
@@ -73,7 +64,7 @@ void pybind(pybind11::module m) {
             .def(
                     "encrypt_reply",
                     [](const PyOnionReqParser& parser, py::bytes reply) {
-                        auto encr = parser.encrypt_reply(usv_from_bytes(reply));
+                        auto encr = parser.encrypt_reply(usv_from_pybytes(reply));
                         return py::bytes{reinterpret_cast<const char*>(encr.data()), encr.size()};
                     },
                     "reply"_a,
