@@ -1,3 +1,9 @@
+libsession-python (0.0.1-5~deb12) bookworm; urgency=medium
+
+  * Another pybind11 compat fix
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 02 Oct 2023 14:10:36 -0300
+
 libsession-python (0.0.1-4~deb12) bookworm; urgency=medium
 
   * Compatibility fix for older pybind
