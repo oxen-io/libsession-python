@@ -1,3 +1,10 @@
+libsession-python (0.0.1-7~ubuntu2310) mantic; urgency=medium
+
+  [ Thomas Winget ]
+  * bind blind25_key_pair
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 29 Jan 2024 14:16:52 -0400
+
 libsession-python (0.0.1-6~ubuntu2310) mantic; urgency=medium
 
   * Add dual str/bytes bindings for blind25_id
