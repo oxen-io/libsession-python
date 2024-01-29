@@ -39,6 +39,23 @@ void pybind_blinding(py::module m) {
             "pubkey is an Ed25519 pubkey, prefixed with 0x25.");
 
     m.def(
+            "blind25_key_pair",
+            [](py::bytes ed_sk_bytes, py::bytes server_pk) {
+                auto [sec, pub] = blind25_key_pair(
+                        usv_from_pybytes(ed_sk_bytes, "ed25519_seckey", 32, 64),
+                        usv_from_pybytes(server_pk, "server_pk", 32, 64));
+                return std::make_pair(
+                        py::bytes{reinterpret_cast<const char*>(sec.data()), sec.size()},
+                        py::bytes{reinterpret_cast<const char*>(pub.data()), pub.size()});
+            },
+            "ed25519_seckey"_a,
+            "server_pubkey"_a,
+            "Computed a blinded session id key pair using 25xxx-style Community pubkey "
+            "blinding.\n\n"
+            "Takes the (unblinded) Session ID ed seed and server pubkey as bytes strings; Returns "
+            "blinded Ed25519 seckey and pubkey.");
+
+    m.def(
             "blind25_sign",
             [](py::bytes ed_sk_bytes, std::string_view server_pk, py::bytes message) {
                 auto ed_sk = usv_from_pybytes(ed_sk_bytes, "ed25519_seckey", 32, 64);
