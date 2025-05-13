@@ -1,3 +1,9 @@
+libsession-python (0.0.1-9) unstable; urgency=medium
+
+  * Rebuild for newer sid python.
+
+ -- Jason Rhinelander <jason@session.foundation>  Tue, 13 May 2025 14:27:53 -0300
+
 libsession-python (0.0.1-8) unstable; urgency=medium
 
   [ Thomas Winget ]
